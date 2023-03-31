@@ -2,7 +2,7 @@
 Meltano-OpenLineage is a meltano utility extension for Open Lineage
 
 ## ⚠️ WARNING ⚠️
-This project is highly experimental and nowhere nearly ready for anything really.
+This project is highly experimental and nowhere near ready for anything at all.
 
 
 ## Installing this extension for local development
