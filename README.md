@@ -1,6 +1,6 @@
-# OpenLineage
+# Meltano OpenLineage
 
-OpenLineage is A meltano utility extension for Open Lineage
+Meltano-OpenLineage is a meltano utility extension for Open Lineage
 
 ## Installing this extension for local development
 
