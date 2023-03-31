@@ -1,0 +1,11 @@
+# Changes here will be overwritten by Copier
+_commit: v0.3.0
+_src_path: gh:meltano/edk
+admin_name: Henning Holgersen
+cli_prefix: openlineage
+extension_description: A meltano utility extension for Open Lineage
+extension_id: openlineage-ext
+extension_name: OpenLineage
+extension_name_lower: openlineage
+library_name: openlineage_ext
+wrapper_target_name: lineage

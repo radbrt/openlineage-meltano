@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "openlineage-ext"
+version = "0.0.1"
+description = "`openlineage-ext` is a Meltano utility extension."
+authors = ["Henning Holgersen"]
+license = "Apache 2.0"
+packages = [
+    { include = "openlineage_ext" }
+    # uncomment this if you want to include static assets
+    # { include = "files_openlineage-ext.*" }
+]
+# If you need to static assets with your extension, you can add them here.
+# Under a directory path of "files_openlineage-ext/"
+#include = [
+#    "files_openlineage-ext/somefile.thing"
+#]
+
+[tool.poetry.dependencies]
+python = "<3.12,>=3.7"
+PyYAML = "^6.0.0"
+click = "^8.1.3"
+typer = "^0.6.1"
+"meltano.edk"= {git = "https://github.com/meltano/edk.git", rev="main"}
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+flake8 = "^3.9.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.8"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+openlineage_extension = 'openlineage_ext.main:app'
+openlineage_invoker = 'openlineage_ext.pass_through:pass_through_cli'
+openlineage_parser = 'openlineage_ext.cli.commands.lineage:logparser'

@@ -1,0 +1,1 @@
+"""Meltano OpenLineage Extension."""
