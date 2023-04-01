@@ -178,7 +178,7 @@ def find_logfile():
 
 def get_configs(environment=None):
   if environment:
-    location = f".meltano/config/meltano-manifest.{environment}.yml"
+    location = f".meltano/manifests/meltano-manifest.{environment}.json"
   else:
     location = ".meltano/manifests/meltano-manifest.json"
   if not os.path.exists(location):

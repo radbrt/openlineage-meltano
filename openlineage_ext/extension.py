@@ -21,7 +21,7 @@ class OpenLineage(ExtensionBase):
 
     def __init__(self) -> None:
         """Initialize the extension."""
-        self.openlineage_bin = "echo"  # verify this is the correct name
+        self.openlineage_bin = "openlineage_parser"  # verify this is the correct name
         self.openlineage_invoker = Invoker(self.openlineage_bin)
 
     def invoke(self, command_name: str | None, *command_args: Any) -> None:
