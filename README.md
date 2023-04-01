@@ -2,7 +2,7 @@
 Meltano-OpenLineage is a meltano utility extension for Open Lineage
 
 ## ⚠️ WARNING ⚠️
-This project is highly experimental and nowhere near ready for anything at all. Also, this isn't really a project I'm interested in maintaining long-term. Other people are probably more right for that. So absolutely not, under any circumstance whatsoever make this project a dependence for anything at all. Feel free to fork or copy-paste the code you like instead.
+This project is highly experimental and nowhere near ready for anything at all. Also, this isn't really a project I'm the right person to maintain in maintaining long-term, so in the unlikely case this goes anywhere, there will likely be a new and better-positioned owner. So absolutely do not, under any circumstance whatsoever make this project a dependence for anything at all. Feel free to fork or copy-paste the code you like instead.
 
 ## How this works so far
 Prerequisites: You need a meltano project, that contains a logging file that specifies file logging output with json format. The plugin will find the log-file from this. The log-level must be pretty low, at least `INFO` level logging must be enabled.

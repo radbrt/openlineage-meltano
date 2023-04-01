@@ -190,7 +190,7 @@ def get_configs(environment=None):
   return m
 
 
-def post_to_openlineage(url, data):
+def post_to_marquez(url, data):
   headers = {'Content-type': 'application/json'}
 
   # Add bearer authentication if token is provided
@@ -206,7 +206,7 @@ def post_to_openlineage(url, data):
 
 @click.command()
 @click.option('--environment', default='prod', help='environment to search in')
-@click.option('--url', default='http://localhost:5000/api/v1/lineage', help='OpenLineage URL')
+@click.option('--url', default='http://localhost:5000/api/v1/lineage', help='OpenLineage URL endpoint')
 @click.option('--publish', default=False, help='Publish to OpenLineage', is_flag=True)
 def logparser(environment, url, publish):
   
@@ -218,10 +218,8 @@ def logparser(environment, url, publish):
 
   if publish:
     for start_entry, end_entry in openlineage_logs:
-      print(start_entry)
-      print(end_entry)
-      post_to_openlineage(url, start_entry)
-      post_to_openlineage(url, end_entry)
+      post_to_marquez(url, start_entry)
+      post_to_marquez(url, end_entry)
 
   with open('openlineage.log', 'w') as f:
     for start_entry, end_entry in openlineage_logs:
