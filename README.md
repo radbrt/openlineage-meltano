@@ -2,7 +2,14 @@
 Meltano-OpenLineage is a meltano utility extension for Open Lineage
 
 ## ⚠️ WARNING ⚠️
-This project is highly experimental and nowhere near ready for anything at all.
+This project is highly experimental and nowhere near ready for anything at all. Also, this isn't really a project I'm interested in maintaining long-term. Other people are probably more right for that. So absolutely not, under any circumstance whatsoever make this project a dependence for anything at all. Feel free to fork or copy-paste the code you like instead.
+
+## Help in development
+I am adding a bunch of issues (and possible some discussion). I won't go into details about that here, but there are some general topics:
+- Currently, this extension doesn't even work. The basic CLI commands can be invoked, but the `meltano invoke` thing doesn't. This is probably a trivial technical thing I haven't understood yet.
+- There are some fixes that can be done to the utility itself, for instance filling in better values for things like schema URL etc. Openlineage seems to assume there are websites everywhere, or that you buy into a semanticWeb type of thing where everything is a URL but nothing is a website.
+- There are some improvements that require help from either the Meltano library itself, the Meltano SDK, or stuff like naming convensions in taps/targets.
+
 
 
 ## Installing this extension for local development

@@ -4,6 +4,7 @@ import json
 import re
 import uuid
 import os
+import requests
 
 def find_element(name, data):
     for element in data:
@@ -189,16 +190,38 @@ def get_configs(environment=None):
   return m
 
 
+def post_to_openlineage(url, data):
+  headers = {'Content-type': 'application/json'}
+
+  # Add bearer authentication if token is provided
+  # if os.getenv("MARQUEZ_API_KEY"):
+  #   auth_token = os.getenv("MARQUEZ_API_KEY")
+  #   headers["Authorization"] = f"Bearer { auth_token }"
+
+  r = requests.post(url, json=data, headers=headers)
+
+  if not r.ok:
+    raise Exception(f"Error posting to OpenLineage: {r.status_code}, {r.text}")
+
+
 @click.command()
 @click.option('--environment', default='prod', help='environment to search in')
-@click.argument('name')
-def logparser(environment, name):
+@click.option('--url', default='http://localhost:5000/api/v1/lineage', help='OpenLineage URL')
+@click.option('--publish', default=False, help='Publish to OpenLineage', is_flag=True)
+def logparser(environment, url, publish):
   
   configs = get_configs(environment)
   for file in find_logfile():
     logs = parse_logs(file, configs)
   
   openlineage_logs = [emit_openlineage_from_summary(summary) for summary in logs]
+
+  if publish:
+    for start_entry, end_entry in openlineage_logs:
+      print(start_entry)
+      print(end_entry)
+      post_to_openlineage(url, start_entry)
+      post_to_openlineage(url, end_entry)
 
   with open('openlineage.log', 'w') as f:
     for start_entry, end_entry in openlineage_logs:
