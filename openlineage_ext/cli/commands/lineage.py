@@ -194,9 +194,9 @@ def post_to_openlineage(url, data):
   headers = {'Content-type': 'application/json'}
 
   # Add bearer authentication if token is provided
-  # if os.getenv("MARQUEZ_API_KEY"):
-  #   auth_token = os.getenv("MARQUEZ_API_KEY")
-  #   headers["Authorization"] = f"Bearer { auth_token }"
+  if os.getenv("MARQUEZ_API_KEY"):
+    auth_token = os.getenv("MARQUEZ_API_KEY")
+    headers["Authorization"] = f"Bearer { auth_token }"
 
   r = requests.post(url, json=data, headers=headers)
 
