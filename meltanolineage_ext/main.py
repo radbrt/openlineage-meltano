@@ -1,4 +1,4 @@
-"""OpenLineage cli entrypoint."""
+"""MeltanoLineage cli entrypoint."""
 
 import os
 import sys
@@ -8,13 +8,13 @@ import structlog
 import typer
 from meltano.edk.extension import DescribeFormat
 from meltano.edk.logging import default_logging_config, parse_log_level
-from openlineage_ext.extension import OpenLineage
+from meltanolineage_ext.extension import MeltanoLineage
 
-APP_NAME = "OpenLineage"
+APP_NAME = "MeltanoLineage"
 
 log = structlog.get_logger(APP_NAME)
 
-ext = OpenLineage()
+ext = MeltanoLineage()
 
 typer.core.rich = None  # remove to enable stylized help output when `rich` is installed
 app = typer.Typer(
@@ -28,7 +28,7 @@ def initialize(
     ctx: typer.Context,
     force: bool = typer.Option(False, help="Force initialization (if supported)"),
 ) -> None:
-    """Initialize the OpenLineage plugin."""
+    """Initialize the MeltanoLineage plugin."""
     try:
         ext.initialize(force)
     except Exception:
@@ -36,11 +36,6 @@ def initialize(
             "initialize failed with uncaught exception, please report to maintainer"
         )
         sys.exit(1)
-
-@app.command()
-def helloworld(name: str):
-    print(f"Hello {name}")
-
 
 
 @app.command(
@@ -92,7 +87,7 @@ def main(
         help="Log in the meltano JSON log format"
     ),
 ) -> None:
-    """Simple Meltano extension that wraps the lineage CLI."""
+    """Simple Meltano extension that wraps the meltano-lineage CLI."""
     default_logging_config(
         level=parse_log_level(log_level),
         timestamps=log_timestamps,

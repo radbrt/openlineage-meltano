@@ -1,4 +1,4 @@
-"""Meltano OpenLineage extension."""
+"""Meltano MeltanoLineage extension."""
 from __future__ import annotations
 
 import os
@@ -16,13 +16,13 @@ from meltano.edk.process import Invoker, log_subprocess_error
 log = structlog.get_logger()
 
 
-class OpenLineage(ExtensionBase):
+class MeltanoLineage(ExtensionBase):
     """Extension implementing the ExtensionBase interface."""
 
     def __init__(self) -> None:
         """Initialize the extension."""
-        self.openlineage_bin = "openlineage_parser"  # verify this is the correct name
-        self.openlineage_invoker = Invoker(self.openlineage_bin)
+        self.meltanolineage_bin = "meltano-lineage"  # verify this is the correct name
+        self.meltanolineage_invoker = Invoker(self.meltanolineage_bin)
 
     def invoke(self, command_name: str | None, *command_args: Any) -> None:
         """Invoke the underlying cli, that is being wrapped by this extension.
@@ -32,11 +32,10 @@ class OpenLineage(ExtensionBase):
             command_args: The arguments to pass to the command.
         """
         try:
-            log.info(command_name, command_args=command_args)
-            self.openlineage_invoker.run_and_log(command_name, *command_args)
+            self.meltanolineage_invoker.run_and_log(command_name, *command_args)
         except subprocess.CalledProcessError as err:
             log_subprocess_error(
-                f"openlineage {command_name}", err, "OpenLineage invocation failed"
+                f"meltanolineage {command_name}", err, "MeltanoLineage invocation failed"
             )
             sys.exit(err.returncode)
 
@@ -50,10 +49,10 @@ class OpenLineage(ExtensionBase):
         return models.Describe(
             commands=[
                 models.ExtensionCommand(
-                    name="openlineage_extension", description="extension commands"
+                    name="meltanolineage_extension", description="extension commands"
                 ),
                 models.InvokerCommand(
-                    name="openlineage_invoker", description="pass through invoker"
+                    name="meltanolineage_invoker", description="pass through invoker"
                 ),
             ]
         )

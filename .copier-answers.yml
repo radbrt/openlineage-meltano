@@ -2,10 +2,11 @@
 _commit: v0.3.0
 _src_path: gh:meltano/edk
 admin_name: Henning Holgersen
-cli_prefix: openlineage
-extension_description: A meltano utility extension for Open Lineage
-extension_id: openlineage-ext
-extension_name: OpenLineage
-extension_name_lower: openlineage
-library_name: openlineage_ext
-wrapper_target_name: lineage
+cli_prefix: meltanolineage
+extension_description: A meltano utility extension for MeltanoLineage that wraps the
+    `meltano-lineage` python library for creating lineage from meltano projects.
+extension_id: meltanolineage-ext
+extension_name: MeltanoLineage
+extension_name_lower: meltanolineage
+library_name: meltanolineage_ext
+wrapper_target_name: meltano-lineage
