@@ -169,9 +169,3 @@ poetry.toml
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python
-
-# Dev files
-.meltano/
-logging.yaml
-meltano.log
-openlineage.log
